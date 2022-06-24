@@ -1,7 +1,9 @@
 const canvas = document.querySelector('canvas')
 const context = canvas.getContext('2d')
+
 canvas.width = 1600
 canvas.height = 900
+
 
 const image = new Image()
 image.src ="./img/mapaeste.png"
@@ -30,40 +32,31 @@ const background = new Propiedades({
     image:image
     })
 
-    const keys = {
-       
+    const keys = {   
         w:{
-            pressed: false,
-           
+            pressed: false,        
         },
         a:{
-            pressed: false,
-              
+            pressed: false,      
         },
         s:{
-            pressed: false,
-               
+            pressed: false,              
         },
         d:{
-            pressed: false,
-             
+            pressed: false,    
         },
        keystate: {
         lastUpped: "",
         lastKey: ""
-
         }
-    
     }
-
-    
-    
 
 context.fillStyle = 'blue' 
 context.fillRect(0,0,canvas.width, canvas.height )
 
 function animation(){
     window.requestAnimationFrame(animation)
+
     background.draw()
     
    
@@ -91,7 +84,7 @@ function animation(){
             background.position.x = background.position.x - 3    
         } 
 
-        console.log(keys.w.pressed)
+        
        
 }
 
@@ -150,6 +143,14 @@ window.addEventListener('keyup', (e) => {
     break;
     }
  })
+
+
+ 
+
+
+
+
+
 
 
 
