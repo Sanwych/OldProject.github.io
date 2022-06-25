@@ -4,7 +4,6 @@ const context = canvas.getContext('2d')
 canvas.width = 1600
 canvas.height = 900
 
-
 const image = new Image()
 image.src ="./img/mapaeste.png"
 
@@ -56,33 +55,45 @@ context.fillRect(0,0,canvas.width, canvas.height )
 
 function animation(){
     window.requestAnimationFrame(animation)
-
-    background.draw()
     
-   
+    if(sidebar.classList.contains('off')){  
+        
+    
+    background.draw()
     context.drawImage(player, 
 
         0,0,player.width / 4 , player.height, /* 0 --> Valor inicial de X 0 --> Valor inicial de Y 
                                               player.width / 4 --> Parte que se corta (desde la izquierda, 
-                                              coge a un personaje) player.height --> altura del personaje */
-        
+                                              coge a un personaje) player.height --> altura del personaje */   
         canvas.width / 2 - player.width / 3, 
         canvas.height / 2,
         player.width / 4 , 
         player.height,)  
 
-        if (keys.w.pressed == true && keys.keystate.lastKey === 'w'){
+       
+
+          if (keys.w.pressed == true && keys.keystate.lastKey === 'w'){
             background.position.y = background.position.y + 3     
-        }
-         else if (keys.a.pressed == true && keys.keystate.lastKey === 'a'){
+          }
+           else if (keys.a.pressed == true && keys.keystate.lastKey === 'a'){
             background.position.x = background.position.x + 3 
-        }
-        else if (keys.s.pressed == true && keys.keystate.lastKey === 's'){
+          }
+          else if (keys.s.pressed == true && keys.keystate.lastKey === 's'){
             background.position.y = background.position.y - 3  
-        }
-        else if (keys.d.pressed == true && keys.keystate.lastKey === 'd'){
+          }
+          else if (keys.d.pressed == true && keys.keystate.lastKey === 'd'){
             background.position.x = background.position.x - 3    
-        } 
+          } 
+
+          console.log('SI ESTE NUMERO SUBE, EL JUEGO ESTA SIENDO ACTUALIZADO (30-60fps)')
+        } else{
+            console.log('SI ESTE NUMERO SUBE, EL CANVAS (mapa) NO ESTÁ SIENDO ACTUALIZADO (0 fps)')
+            
+        }
+        
+            
+        
+        
 
         
        
@@ -90,7 +101,9 @@ function animation(){
 
 animation()
 
+
  window.addEventListener('keydown', (e) => {
+  
    switch (e.key){
    case 'w':
     keys.w.pressed = true
@@ -112,11 +125,12 @@ animation()
    keys.keystate.lastKey = 'd'
   break;
 
-   }
-   
+   } 
 })
 
+
 window.addEventListener('keyup', (e) => {
+  
     switch (e.key){
     case 'w': 
     keys.w.pressed = false 
@@ -143,6 +157,7 @@ window.addEventListener('keyup', (e) => {
     break;
     }
  })
+
 
 
  
