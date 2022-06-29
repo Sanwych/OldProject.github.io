@@ -76,44 +76,10 @@ function animation(){
 
 
 animation()
-   keys.keystate.lastKey = 'd'
-  break;
 
-   } 
-})
+ 
 
-
-window.addEventListener('keyup', (e) => {
-  
-    switch (e.key){
-    case 'w': 
-    keys.w.pressed = false 
-    keys.keystate.lastUpped = 'w'
-    
-    
-    break;
-    case 'a': 
-    keys.a.pressed = false 
-    keys.keystate.lastUpped = 'a'
-    
-    
-    break;
-    case 's': 
-    keys.s.pressed = false  
-    keys.keystate.lastUpped = 's'
-    
-    break;
-    case 'd':
-    keys.d.pressed = false 
-    keys.keystate.lastUpped = 'd'
-
-    
-    break;
-    }
- })
-
-
-
+ 
  
 
 
