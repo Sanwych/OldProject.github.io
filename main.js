@@ -95,7 +95,7 @@ const background = new Propiedades({
         },
        keystate: {
         lastUpped: "",
-        lastKey: ""
+        lastKey: "",
         }
     }
 
