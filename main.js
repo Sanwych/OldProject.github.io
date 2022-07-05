@@ -7,6 +7,9 @@ canvas.height = 900
 const imagen = new Image()
 imagen.src ="./img/mapaeste.png"
 
+const foregroundImg = new Image()
+foregroundImg.src ="./img/fore.png"
+
 const player = new Image()
 player.src = "./img/playerDown.png"
 
@@ -107,6 +110,17 @@ const background = new Propiedades({
     image:imagen
     })
 
+
+const foreground = new Propiedades({
+    position:{
+        x: offsetX,
+        y: offsetY
+        },
+        
+        image:foregroundImg
+        })
+   
+
     const keys = {   
         w:{
             pressed: false,        
@@ -126,7 +140,7 @@ const background = new Propiedades({
         }
     }
 
-    const movableItem = [background, ...boundaries]
+    const movableItem = [background, ...boundaries, foreground]
 
     function stopPlayer({e1,e2}){
         
@@ -151,6 +165,8 @@ function animation(){
     })
 
     mainChar.draw()
+
+    foreground.draw()
     
   if(sidebar.classList.contains('off')){
 
@@ -256,18 +272,10 @@ function animation(){
         if(moving == true)
         movableItem.forEach((movableItem) =>{
             movableItem.position.x -= 3
-        })  
-          
-        
-      } 
-      
-                    
+        })       
+      }                     
 }
-
-
 }
-
-
 
 animation()
 
