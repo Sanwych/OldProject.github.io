@@ -5,7 +5,7 @@ canvas.width = 1600
 canvas.height = 900
 
 const imagen = new Image()
-imagen.src ="./img/mapaeste.png"
+imagen.src ="./img/gamermap.png"
 
 const foregroundImg = new Image()
 foregroundImg.src ="./img/fore.png"
@@ -16,8 +16,8 @@ player.src = "./img/playerDown.png"
 context.fillStyle = 'blue' 
 context.fillRect(0,0,canvas.width, canvas.height)
 
-const offsetX = -300;
-const offsetY= -297
+const offsetX = -1185;
+const offsetY= -500
 
 var collisionMap = []
 
@@ -96,10 +96,12 @@ const mainChar = new Propiedades({
     image:player,
     frames:{default:4},
     width: 160 / 4,
-    height: 68
+    height: 63
      
     
 })
+
+
 
 const background = new Propiedades({
     position:{
@@ -272,12 +274,14 @@ function animation(){
         if(moving == true)
         movableItem.forEach((movableItem) =>{
             movableItem.position.x -= 3
-        })       
-      }                     
+        })  
+      }                    
 }
 }
-
 animation()
+
+
+
 
 
  
