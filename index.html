@@ -6,14 +6,17 @@
 </head>
 
 <body> 
-   <input id="menu" type="button" value="Game Menu">
+   <input id="menu" type="button" value="Game Menu" style="position: fixed;">
    <nav id="sidebar" class="off">
     <div class="sidetext">
-       <ul> Player speed <input class="subi" type="label"> </ul> <br> 
-       <ul> Toggle collisions <input class="subi" type="label"> </ul> <br>
-       <ul> Toggle encounters <input class="subi" type="label"> </ul> <br>
-       <ul> Toggle music <input class="subi" type="label"> </ul> <br>
-       <ul> Music volume <input class="subi" type="label"> </ul> <br>
+     
+       <label for="varSpeed">PlayerSpeed</label>
+       <input type="text" id="varSpeed">
+       <input for="varSpeed" type="button" onclick="updateSpeed()" value="Update">
+       
+       
+     
+       
 
 
     </div>
@@ -25,13 +28,13 @@
   </canvas>
  
 </main>
+
 <script src = "./collision/collisions.js"></script>
 <script src = "movement.js"></script>
 <script src = "menu.js"></script>
 <script src = "main.js"></script>
 
 
-</body>
 
 
 
