@@ -1,27 +1,9 @@
 
-function playerMovement(){
-    background.draw()
-    context.drawImage(player, 
+var movementQuotient = 3
 
-        0,0,player.width / 4 , 
-        player.height,   
-        canvas.width / 2 - player.width / 3, 
-        canvas.height / 2,
-        player.width / 4 , 
-        player.height,)  
-
-     if(keys.w.pressed == true && keys.keystate.lastKey === 'w'){
-        background.position.y = background.position.y + 3     
-      }
-       else if (keys.a.pressed == true && keys.keystate.lastKey === 'a'){
-        background.position.x = background.position.x + 3 
-      }
-       else if (keys.s.pressed == true && keys.keystate.lastKey === 's'){
-        background.position.y = background.position.y - 3  
-      }
-       else if (keys.d.pressed == true && keys.keystate.lastKey === 'd'){
-        background.position.x = background.position.x - 3    
-      } 
+function updateSpeed(){
+    movementQuotient = parseInt(document.getElementById('varSpeed').value)
+    console.log(movementQuotient)
 }
 
 window.addEventListener('keydown', (e) => {
