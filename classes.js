@@ -40,37 +40,3 @@ class Propiedades{
        
     }
 }
-
-const mainChar = new Propiedades({
-    position:{
-        x:canvas.width / 2 - 192 / 3, 
-        y:canvas.height / 2 - 68 / 2,
-    }, 
-    image:player,
-    frames:{default:4},
-    width: 160 / 4,
-    height: 63
-     
-    
-})
-
-
-
-const background = new Propiedades({
-    position:{
-    x: offsetX,
-    y: offsetY
-    },
-    
-    image:imagen
-    })
-
-
-const foreground = new Propiedades({
-    position:{
-        x: offsetX,
-        y: offsetY
-        },
-        
-        image:foregroundImg
-        })
