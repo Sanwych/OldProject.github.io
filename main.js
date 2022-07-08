@@ -19,6 +19,7 @@ context.fillRect(0,0,canvas.width, canvas.height)
 const offsetX = -1185;
 const offsetY= -500
 
+
 var collisionMap = []
 
 for(let i = 0; i < colisiones.length; i += 70){
@@ -28,24 +29,6 @@ for(let i = 0; i < colisiones.length; i += 70){
 
 }
 
-
-
-class Boundary {
-
-    static width = 48
-    static height = 48
-
-    constructor({position}){
-        this.position = position
-        this.width = 48
-        this.height = 48
-    }
-
-    draw(){
-        context.fillStyle = ' rgba(255,0,0,0) '
-        context.fillRect(this.position.x,this.position.y, this.width, this.height)  
-    }   
-}
 
 const boundaries = []
 
@@ -88,40 +71,6 @@ class Propiedades{
     }
 }
 
-const mainChar = new Propiedades({
-    position:{
-        x:canvas.width / 2 - 192 / 3, 
-        y:canvas.height / 2 - 68 / 2,
-    }, 
-    image:player,
-    frames:{default:4},
-    width: 160 / 4,
-    height: 63
-     
-    
-})
-
-
-
-const background = new Propiedades({
-    position:{
-    x: offsetX,
-    y: offsetY
-    },
-    
-    image:imagen
-    })
-
-
-const foreground = new Propiedades({
-    position:{
-        x: offsetX,
-        y: offsetY
-        },
-        
-        image:foregroundImg
-        })
-   
 
     const keys = {   
         w:{
@@ -152,12 +101,14 @@ const foreground = new Propiedades({
                   e1.position.y + e1.height >= e2.position.y)   
     }
 
+
     
   
 
 function animation(){
     
     window.requestAnimationFrame(animation) 
+    
     
     background.draw()
     
@@ -169,6 +120,7 @@ function animation(){
     mainChar.draw()
 
     foreground.draw()
+    console.log(movementQuotient)
     
   if(sidebar.classList.contains('off')){
 
@@ -186,7 +138,7 @@ function animation(){
                 ...boundary
                 ,position:{
                x: boundary.position.x,
-               y: boundary.position.y + 3,
+               y: boundary.position.y + movementQuotient,
              }}
             }
             )){
@@ -199,7 +151,7 @@ function animation(){
         
         if(moving == true)
         movableItem.forEach((movableItem) =>{
-            movableItem.position.y += 3
+            movableItem.position.y += movementQuotient
 
         })     
         
@@ -210,7 +162,7 @@ function animation(){
              if(stopPlayer({
                 e1:mainChar,
                 e2:{...boundary,position:{
-                  x: boundary.position.x + 3,
+                  x: boundary.position.x + movementQuotient,
                   y: boundary.position.y
                 }
                }}
@@ -224,7 +176,8 @@ function animation(){
            
            if(moving == true)
         movableItem.forEach((movableItem) =>{
-            movableItem.position.x += 3
+            movableItem.position.x += movementQuotient
+            
         })
          
         
@@ -236,7 +189,7 @@ function animation(){
                 e1:mainChar,
                 e2:{...boundary,position:{
                   x: boundary.position.x,
-                  y: boundary.position.y - 3,
+                  y: boundary.position.y - movementQuotient,
                 }}
                }
                )){
@@ -249,7 +202,7 @@ function animation(){
            
            if(moving == true)
         movableItem.forEach((movableItem) =>{
-            movableItem.position.y -= 3
+            movableItem.position.y -= movementQuotient
         })
          
       }
@@ -259,7 +212,7 @@ function animation(){
           if(stopPlayer({
              e1:mainChar,
              e2:{...boundary,position:{
-               x: boundary.position.x - 3,
+               x: boundary.position.x - movementQuotient,
                y: boundary.position.y
              }}
             }
@@ -273,18 +226,41 @@ function animation(){
         
         if(moving == true)
         movableItem.forEach((movableItem) =>{
-            movableItem.position.x -= 3
+            movableItem.position.x -= movementQuotient
         })  
-      }                    
+          
+        
+      } 
+      
+                    
 }
+
+
 }
+
+
+
 animation()
 
 
-
+console.log(mainChar.width)
 
 
  
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
 
 
  
