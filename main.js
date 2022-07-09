@@ -109,6 +109,113 @@ collisionMap.forEach((row, i) => {
     }
 
 
+    function playerMovement(){
+
+        let moving = true
+    
+      if(keys.w.pressed == true && keys.keystate.lastKey === 'w'){
+        for(let i = 0; i < boundaries.length; i++){
+           const boundary = boundaries[i]
+            if(
+              stopPlayer({
+               e1:mainChar,
+               e2:{
+                  ...boundary
+                  ,position:{
+                 x: boundary.position.x,
+                 y: boundary.position.y + movementQuotient,
+               }}
+              }
+              )){
+                  moving = false 
+                  
+                  break
+              }
+        }
+          
+          if(moving == true)
+          movableItem.forEach((movableItem) =>{
+              movableItem.position.y += movementQuotient
+    
+          })     
+          
+        }
+         else if (keys.a.pressed == true && keys.keystate.lastKey === 'a'){
+          for(let i = 0; i<boundaries.length;i++){
+              const boundary = boundaries[i]
+               if(stopPlayer({
+                  e1:mainChar,
+                  e2:{...boundary,position:{
+                    x: boundary.position.x + movementQuotient,
+                    y: boundary.position.y
+                  }
+                 }}
+                 )){
+                  
+                     moving = false
+                     console.log(moving)
+                     break
+                 }
+           }
+             
+             if(moving == true)
+          movableItem.forEach((movableItem) =>{
+              movableItem.position.x += movementQuotient
+              
+          })
+           
+          
+        }
+         else if (keys.s.pressed == true && keys.keystate.lastKey === 's'){
+          for(let i = 0; i<boundaries.length;i++){
+              const boundary = boundaries[i]
+               if(stopPlayer({
+                  e1:mainChar,
+                  e2:{...boundary,position:{
+                    x: boundary.position.x,
+                    y: boundary.position.y - movementQuotient,
+                  }}
+                 }
+                 )){
+                  
+                     moving = false
+                     console.log(moving)
+                     break
+                 }
+           }
+             
+             if(moving == true)
+          movableItem.forEach((movableItem) =>{
+              movableItem.position.y -= movementQuotient
+          })
+           
+        }
+         else if (keys.d.pressed == true && keys.keystate.lastKey === 'd'){
+          for(let i = 0; i<boundaries.length;i++){
+           const boundary = boundaries[i]
+            if(stopPlayer({
+               e1:mainChar,
+               e2:{...boundary,position:{
+                 x: boundary.position.x - movementQuotient,
+                 y: boundary.position.y
+               }}
+              }
+              )){
+                  
+                  moving = false
+                  console.log(moving)
+                  break
+              }
+        }
+          
+          if(moving == true)
+          movableItem.forEach((movableItem) =>{
+              movableItem.position.x -= movementQuotient
+          })  
+            
+          
+        } 
+      }
     
   
 
@@ -127,133 +234,17 @@ function animation(){
     mainChar.draw()
 
     foreground.draw()
-    console.log(movementQuotient)
+  
     
   if(sidebar.classList.contains('off')){
 
-    
-    
-    let moving = true
-    
-    if(keys.w.pressed == true && keys.keystate.lastKey === 'w'){
-      for(let i = 0; i < boundaries.length; i++){
-         const boundary = boundaries[i]
-          if(
-            stopPlayer({
-             e1:mainChar,
-             e2:{
-                ...boundary
-                ,position:{
-               x: boundary.position.x,
-               y: boundary.position.y + movementQuotient,
-             }}
-            }
-            )){
-                moving = false 
-                
-                console.log(moving)
-                break
-            }
-      }
-        
-        if(moving == true)
-        movableItem.forEach((movableItem) =>{
-            movableItem.position.y += movementQuotient
-
-        })     
-        
-      }
-       else if (keys.a.pressed == true && keys.keystate.lastKey === 'a'){
-        for(let i = 0; i<boundaries.length;i++){
-            const boundary = boundaries[i]
-             if(stopPlayer({
-                e1:mainChar,
-                e2:{...boundary,position:{
-                  x: boundary.position.x + movementQuotient,
-                  y: boundary.position.y
-                }
-               }}
-               )){
-                
-                   moving = false
-                   console.log(moving)
-                   break
-               }
-         }
-           
-           if(moving == true)
-        movableItem.forEach((movableItem) =>{
-            movableItem.position.x += movementQuotient
-            
-        })
-         
-        
-      }
-       else if (keys.s.pressed == true && keys.keystate.lastKey === 's'){
-        for(let i = 0; i<boundaries.length;i++){
-            const boundary = boundaries[i]
-             if(stopPlayer({
-                e1:mainChar,
-                e2:{...boundary,position:{
-                  x: boundary.position.x,
-                  y: boundary.position.y - movementQuotient,
-                }}
-               }
-               )){
-                
-                   moving = false
-                   console.log(moving)
-                   break
-               }
-         }
-           
-           if(moving == true)
-        movableItem.forEach((movableItem) =>{
-            movableItem.position.y -= movementQuotient
-        })
-         
-      }
-       else if (keys.d.pressed == true && keys.keystate.lastKey === 'd'){
-        for(let i = 0; i<boundaries.length;i++){
-         const boundary = boundaries[i]
-          if(stopPlayer({
-             e1:mainChar,
-             e2:{...boundary,position:{
-               x: boundary.position.x - movementQuotient,
-               y: boundary.position.y
-             }}
-            }
-            )){
-                
-                moving = false
-                console.log(moving)
-                break
-            }
-      }
-        
-        if(moving == true)
-        movableItem.forEach((movableItem) =>{
-            movableItem.position.x -= movementQuotient
-        })  
-          
-        
-      } 
-      
-                    
+    playerMovement()
+                       
 }
 
 
 }
 
-
-
-animation()
-
-
-
- 
-
- 
 
 
  
