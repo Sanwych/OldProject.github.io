@@ -6,7 +6,8 @@ class Boundary {
     constructor({position}){
         this.position = position
         this.width = 48
-        this.height = 48
+        this.height = 47
+
     }
 
     draw(){
@@ -35,8 +36,10 @@ class Propiedades{
             this.position.x,
             this.position.y, 
             this.image.width / this.frames.default , 
-            this.image.height
+            this.image.height;
             ) 
        
     }
+
 }
+
