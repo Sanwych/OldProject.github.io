@@ -6,8 +6,7 @@ class Boundary {
     constructor({position}){
         this.position = position
         this.width = 48
-        this.height = 47
-
+        this.height = 48
     }
 
     draw(){
@@ -18,21 +17,50 @@ class Boundary {
 
 class Propiedades{
     
-    constructor({position, width, height, image, frames = {default: 1}}){
+    constructor({position,image, frames = {default: 1}, sprites}){
         this.position = position
         this.image = image   
-        this.frames = frames 
-        this.width = width
-        this.height = height
+        this.frames = {...frames, val : 0, elapsed : 0}
+        this.sprites = sprites
+        this.width = 48
+        this.height = 63
+        this.moving = false
+        this.sprites = sprites
     
     }
      draw(){
         context.drawImage(this.image, 
   
-            0,
+            this.frames.val * this.width,
             0,
             this.image.width / this.frames.default , 
             this.image.height,  
+            this.position.x,
+            this.position.y, 
+            this.image.width / this.frames.default , 
+            this.image.height
+            
+            )
+            
+            if(this.moving == true){
+
+            if(this.frames.default > 1)
+            this.frames.elapsed++
+             
+            if(this.frames.elapsed % 10 == 0)
+
+            if(this.frames.val < this.frames.default - 1 ){
+                this.frames.val++ 
+            } else{
+                this.frames.val = 0
+            }
+
+            
+        }
+    }
+}
+
+
             this.position.x,
             this.position.y, 
             this.image.width / this.frames.default , 
