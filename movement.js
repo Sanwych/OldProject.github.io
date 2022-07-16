@@ -2,8 +2,12 @@
 var movementQuotient = 3
 
 function updateSpeed(){
-    movementQuotient = parseInt(document.getElementById('varSpeed').value)
-    console.log(movementQuotient)
+    if (!isNaN(document.getElementById('varSpeed').value) && parseInt((document.getElementById('varSpeed').value)) <= 20) {
+        movementQuotient = parseInt(document.getElementById('varSpeed').value)
+        console.log("Player speed set at " + movementQuotient)
+      } else {
+        throw console.error("Invalid character");
+      }
 }
 
 window.addEventListener('keydown', (e) => {
