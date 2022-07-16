@@ -10,10 +10,21 @@ imagen.src ="./img/gamermap.png"
 const foregroundImg = new Image()
 foregroundImg.src ="./img/fore.png"
 
-const player = new Image()
-player.src = "./img/playerDown.png"
+const playerDown = new Image()
+playerDown.src = "./img/playerDown.png"
 
-context.fillStyle = 'blue' 
+const playerUp = new Image()
+playerUp.src = "./img/playerUp.png"
+
+const playerRight = new Image()
+playerRight.src = "./img/playerRight.png"
+
+const playerLeft = new Image()
+playerLeft.src = "./img/playerLeft.png"
+
+
+
+
 context.fillRect(0,0,canvas.width, canvas.height)
 
 const offsetX = -1185;
@@ -24,12 +35,16 @@ const mainChar = new Propiedades({
         x:canvas.width / 2 - 192 / 3, 
         y:canvas.height / 2 - 68 / 2,
     }, 
-    image:player,
-    frames:{default:4},
-    width: 160 / 4,
-    height: 63
-     
-    
+    image:playerDown,
+    frames:{
+        default:4,
+    },
+    sprites:{
+        down:playerDown,
+        up:playerUp,
+        right:playerRight,
+        left:playerLeft
+    }  
 })
 
 const background = new Propiedades({
@@ -109,113 +124,6 @@ collisionMap.forEach((row, i) => {
     }
 
 
-    function playerMovement(){
-
-        let moving = true
-    
-      if(keys.w.pressed == true && keys.keystate.lastKey === 'w'){
-        for(let i = 0; i < boundaries.length; i++){
-           const boundary = boundaries[i]
-            if(
-              stopPlayer({
-               e1:mainChar,
-               e2:{
-                  ...boundary
-                  ,position:{
-                 x: boundary.position.x,
-                 y: boundary.position.y + movementQuotient,
-               }}
-              }
-              )){
-                  moving = false 
-                  
-                  break
-              }
-        }
-          
-          if(moving == true)
-          movableItem.forEach((movableItem) =>{
-              movableItem.position.y += movementQuotient
-    
-          })     
-          
-        }
-         else if (keys.a.pressed == true && keys.keystate.lastKey === 'a'){
-          for(let i = 0; i<boundaries.length;i++){
-              const boundary = boundaries[i]
-               if(stopPlayer({
-                  e1:mainChar,
-                  e2:{...boundary,position:{
-                    x: boundary.position.x + movementQuotient,
-                    y: boundary.position.y
-                  }
-                 }}
-                 )){
-                  
-                     moving = false
-                     console.log(moving)
-                     break
-                 }
-           }
-             
-             if(moving == true)
-          movableItem.forEach((movableItem) =>{
-              movableItem.position.x += movementQuotient
-              
-          })
-           
-          
-        }
-         else if (keys.s.pressed == true && keys.keystate.lastKey === 's'){
-          for(let i = 0; i<boundaries.length;i++){
-              const boundary = boundaries[i]
-               if(stopPlayer({
-                  e1:mainChar,
-                  e2:{...boundary,position:{
-                    x: boundary.position.x,
-                    y: boundary.position.y - movementQuotient,
-                  }}
-                 }
-                 )){
-                  
-                     moving = false
-                     console.log(moving)
-                     break
-                 }
-           }
-             
-             if(moving == true)
-          movableItem.forEach((movableItem) =>{
-              movableItem.position.y -= movementQuotient
-          })
-           
-        }
-         else if (keys.d.pressed == true && keys.keystate.lastKey === 'd'){
-          for(let i = 0; i<boundaries.length;i++){
-           const boundary = boundaries[i]
-            if(stopPlayer({
-               e1:mainChar,
-               e2:{...boundary,position:{
-                 x: boundary.position.x - movementQuotient,
-                 y: boundary.position.y
-               }}
-              }
-              )){
-                  
-                  moving = false
-                  console.log(moving)
-                  break
-              }
-        }
-          
-          if(moving == true)
-          movableItem.forEach((movableItem) =>{
-              movableItem.position.x -= movementQuotient
-          })  
-            
-          
-        } 
-      }
     
   
 
@@ -238,12 +146,128 @@ function animation(){
     
   if(sidebar.classList.contains('off')){
 
-    playerMovement()
-                       
+    
+    
+    let moving = true
+    mainChar.moving = false
+    if(keys.w.pressed == true && keys.keystate.lastKey === 'w'){
+        mainChar.image = mainChar.sprites.up
+        
+      for(let i = 0; i < boundaries.length; i++){
+         const boundary = boundaries[i]
+          if(
+            stopPlayer({
+             e1:mainChar,
+             e2:{
+                ...boundary
+                ,position:{
+               x: boundary.position.x,
+               y: boundary.position.y + movementQuotient,
+             }}
+            }
+            )){
+                moving = false 
+                
+                break
+            }
+      }
+      
+        if(moving == true)
+        
+        movableItem.forEach((movableItem) =>{
+            movableItem.position.y += movementQuotient
+            mainChar.moving = true
+        })     
+        
+      }
+       else if (keys.a.pressed == true && keys.keystate.lastKey === 'a'){
+        mainChar.image = mainChar.sprites.left
+        for(let i = 0; i<boundaries.length;i++){
+            const boundary = boundaries[i]
+             if(stopPlayer({
+                e1:mainChar,
+                e2:{...boundary,position:{
+                  x: boundary.position.x + movementQuotient,
+                  y: boundary.position.y
+                }
+               }}
+               )){
+                
+                   moving = false
+                   console.log(moving)
+                   break
+               }
+         }
+           
+           if(moving == true)
+        movableItem.forEach((movableItem) =>{
+            movableItem.position.x += movementQuotient
+            mainChar.moving = true
+        })
+         
+        
+      }
+       else if (keys.s.pressed == true && keys.keystate.lastKey === 's'){
+        mainChar.image = mainChar.sprites.down
+        for(let i = 0; i<boundaries.length;i++){
+            const boundary = boundaries[i]
+             if(stopPlayer({
+                e1:mainChar,
+                e2:{...boundary,position:{
+                  x: boundary.position.x,
+                  y: boundary.position.y - movementQuotient,
+                }}
+               }
+               )){
+                
+                   moving = false
+                   console.log(moving)
+                   break
+               }
+         }
+           
+           if(moving == true)
+        movableItem.forEach((movableItem) =>{
+            movableItem.position.y -= movementQuotient
+            mainChar.moving = true
+        })
+         
+      }
+       else if (keys.d.pressed == true && keys.keystate.lastKey === 'd'){
+        mainChar.image = mainChar.sprites.right
+        for(let i = 0; i<boundaries.length;i++){
+         const boundary = boundaries[i]
+          if(stopPlayer({
+             e1:mainChar,
+             e2:{...boundary,position:{
+               x: boundary.position.x - movementQuotient,
+               y: boundary.position.y
+             }}
+            }
+            )){
+                
+                moving = false
+                console.log(moving)
+                break
+            }
+      }
+        
+        if(moving == true)
+        movableItem.forEach((movableItem) =>{
+            movableItem.position.x -= movementQuotient
+            mainChar.moving = true
+        })  
+          
+        
+      } 
+      
+                    
 }
 
 
 }
+
+animation()
 
 
 
