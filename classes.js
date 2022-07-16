@@ -61,13 +61,3 @@ class Propiedades{
 }
 
 
-            this.position.x,
-            this.position.y, 
-            this.image.width / this.frames.default , 
-            this.image.height;
-            ) 
-       
-    }
-
-}
-
