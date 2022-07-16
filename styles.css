@@ -1,15 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Zen+Loop&display=swap');
 
+:root{
+
+    --screenHeight: 900;
+    --screenWidth: 1600;
+   
+
+}
+
 body{
     margin: 0;
     background-color: black;
     font-family: 'Press Start 2P', cursive;
-    image-rendering: pixelated;
     
     
 }
 
 
+
+
+::placeholder{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px; 
+}
+
+
+
+
+
+
+
+
+.text{
+    margin-top: 300px;
+    font-size: 25px;
+}
 
 #main{
     width: 100%;
@@ -19,26 +44,24 @@ body{
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, rgba(215,213,255,1) 0%, rgba(255,255,255,1) 100%);
-    z-index: 0;
+   
     transition: opacity 0.3s;
-    
-    
+    image-rendering: pixelated;
+
     
 }
+
 
 canvas{
     border: 15px solid white;
 }
-
-
 
 #menu{
     position: absolute;
     top: 18px;
     left: 18px;
     z-index: 2;
-   
-    
+     
 }
 
 #sidebar{
