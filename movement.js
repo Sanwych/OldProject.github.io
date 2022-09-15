@@ -2,7 +2,7 @@
 var movementQuotient = 3
 
 function updateSpeed(){
-    if (!isNaN(document.getElementById('varSpeed').value) && parseInt((document.getElementById('varSpeed').value)) <= 99) {
+    if (!isNaN(document.getElementById('varSpeed').value) && parseInt((document.getElementById('varSpeed').value)) <= 999) {
         movementQuotient = parseInt(document.getElementById('varSpeed').value)
         console.log("Player speed set at " + movementQuotient)
       } else {
